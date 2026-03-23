@@ -25,7 +25,7 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">// portfolio</span>
+          <span className="section-label">{'// portfolio'}</span>
           <h2>
             Featured <span className="gradient-text">Projects</span>
           </h2>

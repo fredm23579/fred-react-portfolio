@@ -46,7 +46,7 @@ export default function Resume() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">// resume</span>
+          <span className="section-label">{'// resume'}</span>
           <h2>
             Skills &amp; <span className="gradient-text">Expertise</span>
           </h2>
