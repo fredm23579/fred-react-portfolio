@@ -34,7 +34,7 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">// about me</span>
+          <span className="section-label">{'// about me'}</span>
           <h2>
             Developer &amp; <span className="gradient-text">AI Engineer</span>
           </h2>

@@ -1,15 +1,27 @@
+/**
+ * @file Header/index.js
+ * @description Sticky site header with scroll-aware glassmorphism background,
+ * Framer Motion active-link indicator, and an animated mobile drawer.
+ *
+ * Accessibility notes:
+ * - Active nav link receives aria-current="page" for screen readers.
+ * - Mobile toggle reflects open/closed state via aria-expanded.
+ * - Decorative icon elements carry aria-hidden="true".
+ * - Mobile drawer is wrapped in a <nav> with aria-label for landmark navigation.
+ */
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiCode } from 'react-icons/fi';
 import './Header.css';
 
+/** Navigation link definitions — order determines render order */
 const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
+  { path: '/',          label: 'Home' },
+  { path: '/about',     label: 'About' },
   { path: '/portfolio', label: 'Portfolio' },
-  { path: '/resume', label: 'Resume' },
-  { path: '/contact', label: 'Contact' },
+  { path: '/resume',    label: 'Resume' },
+  { path: '/contact',   label: 'Contact' },
 ];
 
 export default function Header() {
@@ -17,12 +29,14 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
+  // Add a glassmorphism background once the user scrolls past 20 px
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close the mobile drawer whenever the route changes
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
@@ -35,9 +49,9 @@ export default function Header() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="header__inner container">
-        {/* Logo */}
-        <Link to="/" className="header__logo">
-          <span className="header__logo-icon">
+        {/* ── Logo ──────────────────────────────────────────────────── */}
+        <Link to="/" className="header__logo" aria-label="Fred Motta — home">
+          <span className="header__logo-icon" aria-hidden="true">
             <FiCode size={18} />
           </span>
           <span className="header__logo-text">
@@ -47,43 +61,52 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* ── Desktop navigation ────────────────────────────────────── */}
         <nav className="header__nav" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`header__nav-link ${location.pathname === link.path ? 'header__nav-link--active' : ''}`}
-            >
-              {link.label}
-              {location.pathname === link.path && (
-                <motion.span
-                  className="header__nav-indicator"
-                  layoutId="nav-indicator"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`header__nav-link ${isActive ? 'header__nav-link--active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {link.label}
+                {/* Shared layout animation creates a sliding underline */}
+                {isActive && (
+                  <motion.span
+                    className="header__nav-indicator"
+                    layoutId="nav-indicator"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* CTA + Mobile toggle */}
+        {/* ── CTA button + mobile hamburger ─────────────────────────── */}
         <div className="header__actions">
           <Link to="/contact" className="btn btn-primary header__cta">
             Hire Me
           </Link>
           <button
             className="header__mobile-toggle"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
-            {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            {mobileOpen
+              ? <FiX size={22} aria-hidden="true" />
+              : <FiMenu size={22} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile drawer ─────────────────────────────────────────────── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -93,23 +116,31 @@ export default function Header() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <nav className="header__mobile-nav">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <Link
-                    to={link.path}
-                    className={`header__mobile-link ${location.pathname === link.path ? 'header__mobile-link--active' : ''}`}
+            <nav id="mobile-nav" className="header__mobile-nav" aria-label="Mobile navigation">
+              {navLinks.map((link, i) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                    <Link
+                      to={link.path}
+                      className={`header__mobile-link ${isActive ? 'header__mobile-link--active' : ''}`}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
                 <Link to="/contact" className="btn btn-primary header__mobile-cta">
                   Hire Me
                 </Link>

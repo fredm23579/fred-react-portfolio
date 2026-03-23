@@ -1,27 +1,29 @@
 # Fred Motta — React Portfolio
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-4.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-FF0080?logo=framer&logoColor=white)](https://www.framer.com/motion)
-[![React Router](https://img.shields.io/badge/React_Router-6-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com)
+[![React Router](https://img.shields.io/badge/React_Router-6.30-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com)
+[![Vitest](https://img.shields.io/badge/Vitest-2.x-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 > **Full-Stack Developer & AI Engineer** — Building intelligent, scalable applications at the intersection of modern web and artificial intelligence.
 
-Live portfolio for **Fred Motta** showcasing AI/ML integrations, full-stack MERN projects, and modern web engineering. Built with React 18, Vite, and Framer Motion.
+Personal portfolio for **Fred Motta** showcasing AI/ML integrations, full-stack MERN projects, and modern web engineering. Built with React 18, Vite 5, and Framer Motion 11.
 
 ---
 
 ## Features
 
-- **Animated UI** — Smooth page transitions and scroll-triggered animations via Framer Motion
-- **Typewriter Hero** — Dynamic role cycling on the landing page
+- **Animated UI** — Smooth page transitions and scroll-triggered animations via Framer Motion 11
+- **Typewriter Hero** — Dynamic role cycling with PropTypes-validated component
 - **Filterable Portfolio** — Projects filtered by category (AI/ML, Full-Stack, Frontend)
 - **Animated Skill Bars** — Viewport-triggered progress bars across 6 skill categories
-- **Responsive Design** — Mobile-first layout with animated hamburger menu
+- **Responsive Design** — Mobile-first layout with animated hamburger drawer
 - **Dark Theme** — Modern dark aesthetic with gradient accents and glassmorphism
 - **Tech Marquee** — Continuously scrolling technology strip
 - **Contact Form** — Client-side validated contact form with async UX
+- **Accessible** — `aria-current="page"`, `aria-expanded`, `aria-label`, focus-visible styles
 
 ---
 
@@ -29,12 +31,13 @@ Live portfolio for **Fred Motta** showcasing AI/ML integrations, full-stack MERN
 
 | Layer | Technology |
 |---|---|
-| Framework | React 18 + React Router 6 |
-| Build Tool | Vite 4 + esbuild |
+| Framework | React 18.3 + React Router 6.30 |
+| Build Tool | Vite 5.4 + esbuild |
 | Animations | Framer Motion 11 |
-| Icons | React Icons 5 |
-| Testing | Vitest + Happy DOM |
-| Linting | ESLint 8 (react, react-hooks, react-refresh) |
+| Icons | React Icons 5.5 |
+| Testing | Vitest 2 + @testing-library/react 16 + happy-dom |
+| Linting | ESLint 8 with eslint-plugin-react, react-hooks, react-refresh |
+| Type Hints | PropTypes 15 + JSDoc |
 | Deployment | Netlify / Render / GitHub Pages |
 
 ---
@@ -43,27 +46,32 @@ Live portfolio for **Fred Motta** showcasing AI/ML integrations, full-stack MERN
 
 ```
 fred-react-portfolio/
-├── public/               # Static assets & PWA manifest
+├── public/
+│   ├── manifest.json         # PWA manifest with correct branding
+│   ├── robots.txt
+│   └── favicon.ico
 ├── src/
 │   ├── components/
-│   │   ├── Header/       # Sticky nav with scroll detection & mobile menu
-│   │   ├── Footer/       # Brand, nav links, social links
-│   │   ├── Navigation/   # Re-exports Header (legacy compat)
-│   │   └── Project/      # Reusable project card component
-│   ├── data/
-│   │   ├── profile.js    # Bio, stats, social links, education
-│   │   ├── projects.js   # Portfolio project entries
-│   │   └── skills.js     # Skill categories, tools, certifications
+│   │   ├── Header/           # Sticky nav, scroll glassmorphism, mobile drawer
+│   │   ├── Footer/           # Brand, nav links, social links
+│   │   ├── Navigation/       # Re-exports Header (legacy compat)
+│   │   └── Project/          # Reusable project card with PropTypes
+│   ├── data/                 # ALL content lives here — edit these, not components
+│   │   ├── profile.js        # Bio, stats, social links, education (JSDoc annotated)
+│   │   ├── projects.js       # Portfolio project entries (JSDoc annotated)
+│   │   └── skills.js         # Skill categories, tools, certifications (JSDoc annotated)
 │   ├── pages/
-│   │   ├── Home/         # Hero, stats strip, tech marquee
-│   │   ├── About/        # Bio, education, interests
-│   │   ├── Portfolio/    # Filterable project grid
-│   │   ├── Resume/       # Animated skill bars + tools + certs
-│   │   └── Contact/      # Validated contact form + social links
-│   ├── App.js            # Router shell
-│   └── main.jsx          # React DOM entry point
-├── index.html
-├── vite.config.js
+│   │   ├── Home/             # Hero, typewriter, AI providers strip, stats, marquee
+│   │   ├── About/            # Avatar, bio, quick info, interests, education
+│   │   ├── Portfolio/        # Filter tabs + project grid
+│   │   ├── Resume/           # Animated skill bars + tools grid + cert cards
+│   │   └── Contact/          # Info panel + validated contact form
+│   ├── App.js                # Router shell with v7 future flags
+│   ├── main.jsx              # Vite entry point (ReactDOM.createRoot)
+│   ├── reportWebVitals.js    # Web Vitals v4 reporter (optional, opt-in)
+│   └── setupTests.js         # Vitest + jest-dom global setup
+├── .eslintrc.cjs             # ESLint 8 config (react, react-hooks, react-refresh)
+├── vite.config.js            # Vite 5 + Vitest 2 unified config
 └── package.json
 ```
 
@@ -73,8 +81,8 @@ fred-react-portfolio/
 
 ### Prerequisites
 
-- Node.js 18+
-- npm 9+
+- Node.js ≥ 18.0.0
+- npm ≥ 9.0.0
 
 ### Install & Run
 
@@ -94,17 +102,19 @@ npm run dev
 
 | Script | Description |
 |---|---|
-| `npm run dev` | Start Vite dev server on port 3000 |
-| `npm run build` | Production build → `dist/` |
+| `npm run dev` | Start Vite 5 dev server on port 3000 |
+| `npm run build` | Production build → `dist/` with source maps |
 | `npm run preview` | Preview production build locally |
-| `npm test` | Run Vitest unit tests |
+| `npm test` | Run Vitest in watch mode |
+| `npm run test:run` | Run Vitest once (CI mode) |
+| `npm run coverage` | Generate V8 coverage report |
 | `npm run lint` | ESLint with zero-warning policy |
 
 ---
 
 ## Customization
 
-All content is driven by three data files — no component changes needed for most updates:
+All content is driven by three data files — no component edits needed:
 
 | File | Controls |
 |---|---|
@@ -123,18 +133,33 @@ npm run build
 # Deploy dist/ to Netlify, Render, GitHub Pages, Vercel, etc.
 ```
 
-For React Router to work on reload, configure your host to redirect all 404s to `index.html`.
+For React Router to work on page reload, configure your host to serve `index.html` for all 404s.
 
-**Netlify** — add a `public/_redirects` file:
+**Netlify** — add `public/_redirects`:
 ```
 /* /index.html 200
 ```
 
 ---
 
+## Testing
+
+```bash
+npm run test:run     # one-off run
+npm run coverage     # HTML coverage report in coverage/
+```
+
+Tests live next to source files (`*.test.js`). The setup uses:
+- **Vitest 2** — zero-config, shares the Vite pipeline
+- **@testing-library/react 16** — component rendering utilities
+- **@testing-library/jest-dom** — DOM assertion matchers
+- **happy-dom** — lightweight DOM environment (faster than jsdom)
+
+---
+
 ## About
 
-**Fred Motta** is a Full-Stack Developer and AI Engineer based in Riverside, California.
+**Fred Motta** — Full-Stack Developer & AI Engineer, Riverside, California.
 
 - **Education:** UCLA — Full-Stack Web Development (MERN Stack)
 - **Specialties:** MERN stack · GraphQL · LLM integration · Multi-provider AI · PWA

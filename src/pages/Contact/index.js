@@ -91,7 +91,7 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">// contact</span>
+          <span className="section-label">{'// contact'}</span>
           <h2>
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>

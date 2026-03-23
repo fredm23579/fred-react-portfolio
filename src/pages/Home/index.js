@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -72,10 +73,19 @@ function TypewriterText({ texts, speed = 80, pause = 2000 }) {
   return (
     <span className="typewriter">
       {displayText}
-      <span className="typewriter__cursor" />
+      <span className="typewriter__cursor" aria-hidden="true" />
     </span>
   );
 }
+
+TypewriterText.propTypes = {
+  /** Array of strings to cycle through */
+  texts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** Typing speed in milliseconds per character (default 80) */
+  speed: PropTypes.number,
+  /** Pause duration in milliseconds before deleting (default 2000) */
+  pause: PropTypes.number,
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
