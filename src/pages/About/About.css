@@ -1,0 +1,348 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+  align-items: start;
+}
+
+/* Avatar */
+.about__avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.about__avatar-inner {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.about__avatar-initials {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.05em;
+  box-shadow: var(--shadow-glow);
+}
+
+.about__avatar-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  animation: spin-slow 12s linear infinite;
+}
+
+.about__avatar-ring--2 {
+  inset: -18px;
+  border-style: dashed;
+  border-color: rgba(139, 92, 246, 0.2);
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+
+/* Quick Info */
+.about__quick-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.about__info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.about__info-item svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.about__info-item a {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.about__availability {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* Social */
+.about__social {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about__social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.about__social-link:hover {
+  color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.08);
+  transform: translateX(4px);
+}
+
+/* Bio */
+.about__quote {
+  padding: 20px 24px;
+  border-left: 3px solid var(--color-primary);
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: 28px;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about__quote-mark {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.about__bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.about__bio p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* Stats */
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.about__stat {
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: var(--transition-fast);
+}
+
+.about__stat:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.about__stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary-light);
+  letter-spacing: -0.03em;
+}
+
+.about__stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Education */
+.about__section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.about__section-title svg {
+  color: var(--color-primary);
+}
+
+.about__education {
+  margin-bottom: 60px;
+}
+
+.about__edu-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+
+.about__edu-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.about__edu-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.about__edu-content {
+  flex: 1;
+}
+
+.about__edu-institution {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.about__edu-degree {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.about__edu-focus {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.about__edu-badge span {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Interests */
+.about__interests {
+  margin-bottom: 60px;
+}
+
+.about__interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.about__interest {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: default;
+  transition: var(--transition-fast);
+}
+
+.about__interest:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.about__interest-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  flex-shrink: 0;
+}
+
+/* CTA */
+.about__cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about__left {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .about__interests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .about__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about__interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__edu-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
