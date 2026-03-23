@@ -1,11 +1,17 @@
 # Fred Motta — React Portfolio
 
+[![Live Site](https://img.shields.io/badge/Live_Site-GitHub_Pages-0969da?logo=github&logoColor=white)](https://fredm23579.github.io/fred-react-portfolio/)
+[![Deploy](https://github.com/fredm23579/fred-react-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/fredm23579/fred-react-portfolio/actions/workflows/deploy.yml)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-FF0080?logo=framer&logoColor=white)](https://www.framer.com/motion)
 [![React Router](https://img.shields.io/badge/React_Router-6.30-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com)
 [![Vitest](https://img.shields.io/badge/Vitest-2.x-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+## Live Site
+
+**[https://fredm23579.github.io/fred-react-portfolio/](https://fredm23579.github.io/fred-react-portfolio/)**
 
 > **Full-Stack Developer & AI Engineer** — Building intelligent, scalable applications at the intersection of modern web and artificial intelligence.
 
@@ -126,11 +132,17 @@ All content is driven by three data files — no component edits needed:
 
 ## Deployment
 
-The `dist/` output is a static SPA. Deploy to any static host:
+### GitHub Pages (automated)
+
+The site auto-deploys to **[https://fredm23579.github.io/fred-react-portfolio/](https://fredm23579.github.io/fred-react-portfolio/)** on every push to `master` via `.github/workflows/deploy.yml`.
+
+The workflow runs lint → tests → build → deploy. A `public/404.html` redirect + script in `index.html` handle SPA deep-link routing on GitHub Pages.
+
+### Manual / Other Hosts
 
 ```bash
 npm run build
-# Deploy dist/ to Netlify, Render, GitHub Pages, Vercel, etc.
+# Deploy dist/ to Netlify, Render, Vercel, etc.
 ```
 
 For React Router to work on page reload, configure your host to serve `index.html` for all 404s.

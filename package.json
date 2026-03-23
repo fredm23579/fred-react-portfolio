@@ -31,12 +31,15 @@
     "vite": "^5.4.11",
     "vitest": "^2.1.9"
   },
+  "homepage": "https://fredm23579.github.io/fred-react-portfolio",
   "scripts": {
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",

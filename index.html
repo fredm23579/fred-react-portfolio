@@ -29,6 +29,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <title>Fred Motta | Full-Stack Developer & AI Engineer</title>
+
+    <!-- SPA routing restore for GitHub Pages (pairs with public/404.html) -->
+    <script>
+      (function (l) {
+        if (l.search[1] === 'p') {
+          var params = l.search.slice(1).split('&');
+          var path = params[0].slice(2).replace(/~and~/g, '&');
+          var query = params[1] ? '?' + params[1].slice(2).replace(/~and~/g, '&') : '';
+          window.history.replaceState(
+            null, null,
+            l.pathname.split('/').slice(0, 2).join('/') + '/' + path + query + l.hash
+          );
+        }
+      }(window.location));
+    </script>
   </head>
   <body>
     <div id="root"></div>
