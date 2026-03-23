@@ -1,0 +1,222 @@
+.resume__download {
+  margin-top: 20px;
+}
+
+.resume__categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.resume__category {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: var(--transition);
+}
+
+.resume__category:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.resume__category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.resume__category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resume__category-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.resume__skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.resume__skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.resume__skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.resume__skill-level {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.resume__skill-bar {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.resume__skill-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--skill-color, var(--color-primary)), color-mix(in srgb, var(--skill-color, var(--color-primary)) 60%, white));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--skill-color, var(--color-primary)) 50%, transparent);
+}
+
+/* Tools */
+.resume__tools {
+  margin-bottom: 60px;
+}
+
+.resume__tools-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.resume__tools-title svg {
+  color: var(--color-primary);
+}
+
+.resume__tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume__tool-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  cursor: default;
+  transition: var(--transition-fast);
+}
+
+.resume__tool-tag:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+/* Certs */
+.resume__certs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume__cert-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+
+.resume__cert-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.resume__cert-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.resume__cert-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.resume__cert-issuer {
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.resume__cert-focus {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.resume__cert-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .resume__categories {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .resume__cert-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resume__cert-badge {
+    margin-left: 0;
+  }
+}

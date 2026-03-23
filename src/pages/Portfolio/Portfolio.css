@@ -1,0 +1,134 @@
+.portfolio__filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.portfolio__filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-family: var(--font-sans);
+}
+
+.portfolio__filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.portfolio__filter-btn--active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.portfolio__filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.portfolio__filter-btn--active .portfolio__filter-count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+/* GitHub CTA */
+.portfolio__github-cta {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.portfolio__github-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+
+.portfolio__github-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.portfolio__github-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+}
+
+.portfolio__github-text {
+  flex: 1;
+}
+
+.portfolio__github-text h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.portfolio__github-text p {
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.portfolio__github-btn {
+  flex-shrink: 0;
+  font-size: 0.88rem;
+  padding: 10px 20px;
+}
+
+@media (max-width: 1024px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio__github-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+}
