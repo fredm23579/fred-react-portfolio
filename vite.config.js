@@ -13,6 +13,10 @@ import react from '@vitejs/plugin-react';
  * - test block: Vitest 2 shares this Vite pipeline (no separate config needed).
  */
 export default defineConfig({
+  // GitHub Pages serves the project at /fred-react-portfolio/ — set the base
+  // so all asset paths and router links resolve correctly in production.
+  base: '/fred-react-portfolio/',
+
   plugins: [
     react({
       // Allow JSX syntax inside .js files without renaming them .jsx
