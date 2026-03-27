@@ -8,17 +8,29 @@ import {
   FiCode,
   FiHeart,
 } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 import profile from '../../data/profile';
 import './Footer.css';
 
-const socialLinks = [
+interface SocialLink {
+  icon: IconType;
+  href: string;
+  label: string;
+}
+
+interface NavLink {
+  path: string;
+  label: string;
+}
+
+const socialLinks: SocialLink[] = [
   { icon: FiGithub, href: profile.github, label: 'GitHub' },
   { icon: FiLinkedin, href: profile.linkedin, label: 'LinkedIn' },
   { icon: FiTwitter, href: profile.twitter, label: 'Twitter' },
   { icon: FiMail, href: `mailto:${profile.email}`, label: 'Email' },
 ];
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
   { path: '/portfolio', label: 'Portfolio' },

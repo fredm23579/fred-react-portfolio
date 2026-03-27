@@ -1,22 +1,15 @@
-/**
- * @file Header/index.js
- * @description Sticky site header with scroll-aware glassmorphism background,
- * Framer Motion active-link indicator, and an animated mobile drawer.
- *
- * Accessibility notes:
- * - Active nav link receives aria-current="page" for screen readers.
- * - Mobile toggle reflects open/closed state via aria-expanded.
- * - Decorative icon elements carry aria-hidden="true".
- * - Mobile drawer is wrapped in a <nav> with aria-label for landmark navigation.
- */
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiCode } from 'react-icons/fi';
 import './Header.css';
 
-/** Navigation link definitions — order determines render order */
-const navLinks = [
+interface NavLink {
+  path: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
   { path: '/',          label: 'Home' },
   { path: '/about',     label: 'About' },
   { path: '/portfolio', label: 'Portfolio' },
@@ -29,14 +22,12 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
-  // Add a glassmorphism background once the user scrolls past 20 px
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close the mobile drawer whenever the route changes
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
@@ -49,7 +40,6 @@ export default function Header() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="header__inner container">
-        {/* ── Logo ──────────────────────────────────────────────────── */}
         <Link to="/" className="header__logo" aria-label="Fred Motta — home">
           <span className="header__logo-icon" aria-hidden="true">
             <FiCode size={18} />
@@ -61,7 +51,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* ── Desktop navigation ────────────────────────────────────── */}
         <nav className="header__nav" aria-label="Main navigation">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
@@ -73,7 +62,6 @@ export default function Header() {
                 aria-current={isActive ? 'page' : undefined}
               >
                 {link.label}
-                {/* Shared layout animation creates a sliding underline */}
                 {isActive && (
                   <motion.span
                     className="header__nav-indicator"
@@ -87,7 +75,6 @@ export default function Header() {
           })}
         </nav>
 
-        {/* ── CTA button + mobile hamburger ─────────────────────────── */}
         <div className="header__actions">
           <Link to="/contact" className="btn btn-primary header__cta">
             Hire Me
@@ -106,7 +93,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ── Mobile drawer ─────────────────────────────────────────────── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

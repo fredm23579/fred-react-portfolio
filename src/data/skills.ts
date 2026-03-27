@@ -1,31 +1,30 @@
-/**
- * @file skills.js
- * @description Skills, tools, and certifications data for Fred Motta.
- *
- * Drives the Resume page skill-bar grid, tools tag cloud, and cert cards.
- * Skill `level` is a 0–100 integer used as a progress-bar percentage.
- *
- * @typedef {Object} Skill
- * @property {string} name  - Skill display name
- * @property {number} level - Proficiency 0–100
- *
- * @typedef {Object} SkillCategory
- * @property {string}  name   - Category display name (must match categoryIcons key in Resume page)
- * @property {string}  icon   - Icon hint string (resolved to a react-icon in Resume/index.js)
- * @property {string}  color  - Hex color used for icon backgrounds and progress bars
- * @property {Skill[]} skills - Ordered list of skills in this category
- *
- * @typedef {Object} Certification
- * @property {string} name   - Certificate / program name
- * @property {string} issuer - Issuing organization
- * @property {string} year   - Year completed
- * @property {string} focus  - Key topics covered
- */
+export interface Skill {
+  name: string;
+  level: number;
+}
 
-const skills = {
-  /** @type {SkillCategory[]} */
+export interface SkillCategory {
+  name: string;
+  icon: string;
+  color: string;
+  skills: Skill[];
+}
+
+export interface Certification {
+  name: string;
+  issuer: string;
+  year: string;
+  focus: string;
+}
+
+export interface SkillsData {
+  categories: SkillCategory[];
+  tools: string[];
+  certifications: Certification[];
+}
+
+const skills: SkillsData = {
   categories: [
-    // ── AI & Machine Learning ─────────────────────────────────────────────
     {
       name: 'AI & Machine Learning',
       icon: 'brain',
@@ -41,8 +40,6 @@ const skills = {
         { name: 'xAI Grok / Meta Llama', level: 82 },
       ],
     },
-
-    // ── Frontend ──────────────────────────────────────────────────────────
     {
       name: 'Frontend',
       icon: 'monitor',
@@ -58,8 +55,6 @@ const skills = {
         { name: 'Framer Motion', level: 78 },
       ],
     },
-
-    // ── Backend ───────────────────────────────────────────────────────────
     {
       name: 'Backend',
       icon: 'server',
@@ -75,8 +70,6 @@ const skills = {
         { name: 'WebSockets', level: 75 },
       ],
     },
-
-    // ── Languages ─────────────────────────────────────────────────────────
     {
       name: 'Languages',
       icon: 'code',
@@ -92,8 +85,6 @@ const skills = {
         { name: 'Java', level: 70 },
       ],
     },
-
-    // ── Databases ─────────────────────────────────────────────────────────
     {
       name: 'Databases',
       icon: 'database',
@@ -108,8 +99,6 @@ const skills = {
         { name: 'Redis', level: 70 },
       ],
     },
-
-    // ── DevOps & Cloud ────────────────────────────────────────────────────
     {
       name: 'DevOps & Cloud',
       icon: 'cloud',
@@ -127,15 +116,12 @@ const skills = {
     },
   ],
 
-  // ── Tools & Technologies tag cloud ───────────────────────────────────────
   tools: [
     'VS Code', 'Claude Code', 'GitHub Copilot', 'Postman', 'Insomnia', 'Figma',
     'ESLint', 'Prettier', 'Vitest', 'Webpack', 'Babel',
     'npm / yarn', 'Workbox', 'Stripe', 'Google OAuth2',
   ],
 
-  // ── Certifications ────────────────────────────────────────────────────────
-  /** @type {Certification[]} */
   certifications: [
     {
       name: 'Full-Stack Web Development',

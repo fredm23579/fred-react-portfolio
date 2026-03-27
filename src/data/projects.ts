@@ -1,25 +1,17 @@
-/**
- * @file projects.js
- * @description Portfolio project data for Fred Motta.
- *
- * Each entry drives a ProjectCard on the Portfolio page.
- * Add new projects here — no component changes required.
- *
- * @typedef {Object} Project
- * @property {number}   id              - Unique identifier
- * @property {string}   title           - Display title
- * @property {string}   description     - Short description (shown on card)
- * @property {string}   longDescription - Expanded detail (shown when card expanded)
- * @property {string[]} tech            - Technology tags
- * @property {'AI/ML'|'Full-Stack'|'Frontend'} category - Filter category
- * @property {string|null} github       - GitHub repo URL or null
- * @property {string|null} live         - Live demo URL or null
- * @property {string[]} highlights      - Bullet-point selling points
- * @property {boolean}  featured        - If true, card gets a "Featured" badge
- */
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  longDescription: string;
+  tech: string[];
+  category: 'AI/ML' | 'Full-Stack' | 'Frontend';
+  github: string | null;
+  live: string | null;
+  highlights: string[];
+  featured: boolean;
+}
 
-/** @type {Project[]} */
-const projects = [
+const projects: Project[] = [
   {
     id: 1,
     title: 'AI Chat — Universal CLI Assistant',

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -12,6 +11,7 @@ import {
   FiZap,
   FiCode,
 } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 import profile from '../../data/profile';
 import './Home.css';
 
@@ -23,7 +23,12 @@ const roles = [
   'Open Source Contributor',
 ];
 
-const aiProviders = [
+interface AiProvider {
+  name: string;
+  color: string;
+}
+
+const aiProviders: AiProvider[] = [
   { name: 'OpenAI', color: '#10b981' },
   { name: 'Claude', color: '#8b5cf6' },
   { name: 'Gemini', color: '#06b6d4' },
@@ -32,14 +37,27 @@ const aiProviders = [
   { name: 'Llama', color: '#ef4444' },
 ];
 
-const highlights = [
+interface Highlight {
+  icon: IconType;
+  label: string;
+  value: string;
+  color: string;
+}
+
+const highlights: Highlight[] = [
   { icon: FiCpu, label: 'AI Integration', value: '6 Providers', color: '#8b5cf6' },
   { icon: FiLayers, label: 'MERN Stack', value: 'Full-Stack', color: '#6366f1' },
   { icon: FiGithub, label: 'Open Source', value: '78+ Repos', color: '#06b6d4' },
   { icon: FiZap, label: 'Live Projects', value: '10+ Deployed', color: '#10b981' },
 ];
 
-function TypewriterText({ texts, speed = 80, pause = 2000 }) {
+interface TypewriterTextProps {
+  texts: string[];
+  speed?: number;
+  pause?: number;
+}
+
+function TypewriterText({ texts, speed = 80, pause = 2000 }: TypewriterTextProps) {
   const [displayText, setDisplayText] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -77,15 +95,6 @@ function TypewriterText({ texts, speed = 80, pause = 2000 }) {
     </span>
   );
 }
-
-TypewriterText.propTypes = {
-  /** Array of strings to cycle through */
-  texts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  /** Typing speed in milliseconds per character (default 80) */
-  speed: PropTypes.number,
-  /** Pause duration in milliseconds before deleting (default 2000) */
-  pause: PropTypes.number,
-};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -161,7 +170,7 @@ export default function Home() {
                 <span
                   key={p.name}
                   className="home__ai-badge"
-                  style={{ '--badge-color': p.color }}
+                  style={{ '--badge-color': p.color } as React.CSSProperties}
                 >
                   {p.name}
                 </span>
@@ -260,7 +269,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            style={{ '--stat-color': item.color }}
+            style={{ '--stat-color': item.color } as React.CSSProperties}
           >
             <div className="home__stat-icon">
               <item.icon size={20} />

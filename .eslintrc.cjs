@@ -1,9 +1,3 @@
-/**
- * ESLint configuration for fred-react-portfolio.
- *
- * Uses ESLint 8 (flat config not required at this version).
- * Extends the React + hooks + react-refresh recommended rule sets.
- */
 module.exports = {
   root: true,
 
@@ -15,11 +9,13 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    // Suppresses the "React must be in scope" rule (not needed with React 17+ JSX transform)
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],
+
+  parser: '@typescript-eslint/parser',
 
   parserOptions: {
     ecmaVersion: 'latest',
@@ -28,23 +24,15 @@ module.exports = {
   },
 
   settings: {
-    // Let eslint-plugin-react auto-detect the installed React version
     react: { version: 'detect' },
   },
 
-  plugins: ['react-refresh'],
+  plugins: ['@typescript-eslint', 'react-refresh'],
 
   rules: {
-    // Warn when a module exports something other than React components (HMR safety)
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-
-    // Warn on missing PropTypes so components stay self-documenting
-    'react/prop-types': 'warn',
-
-    // Allow unused vars prefixed with _ (common for destructured but unused args)
-    'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-
-    // Prefer const over let when variable is never reassigned
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    'no-unused-vars': 'off',
     'prefer-const': 'error',
   },
 };

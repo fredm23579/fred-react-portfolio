@@ -6,10 +6,10 @@ import projects from '../../data/projects';
 import profile from '../../data/profile';
 import './Portfolio.css';
 
-const categories = ['All', 'AI/ML', 'Full-Stack', 'Frontend'];
+const categories = ['All', 'AI/ML', 'Full-Stack', 'Frontend'] as const;
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState<string>('All');
 
   const filtered = activeFilter === 'All'
     ? projects

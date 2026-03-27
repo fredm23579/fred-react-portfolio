@@ -10,10 +10,11 @@ import {
   FiAward,
   FiTool,
 } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 import skills from '../../data/skills';
 import './Resume.css';
 
-const categoryIcons = {
+const categoryIcons: Record<string, IconType> = {
   'AI & Machine Learning': FiCpu,
   Frontend: FiMonitor,
   Backend: FiServer,
@@ -56,7 +57,7 @@ export default function Resume() {
           <a
             href="#"
             className="btn btn-primary resume__download"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e: React.MouseEvent) => e.preventDefault()}
             title="PDF download coming soon"
           >
             <FiDownload size={16} />
@@ -67,6 +68,7 @@ export default function Resume() {
         {/* Skills categories */}
         <div className="resume__categories">
           {sortedCategories.map((category, catIndex) => {
+            if (!category) return null;
             const Icon = categoryIcons[category.name] || FiCode;
             return (
               <motion.div
@@ -106,7 +108,7 @@ export default function Resume() {
                       <div className="resume__skill-bar">
                         <motion.div
                           className="resume__skill-fill"
-                          style={{ '--skill-color': category.color }}
+                          style={{ '--skill-color': category.color } as React.CSSProperties}
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}

@@ -10,10 +10,19 @@ import {
   FiClock,
   FiMessageCircle,
 } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 import profile from '../../data/profile';
 import './Contact.css';
 
-const contactInfo = [
+interface ContactInfo {
+  icon: IconType;
+  label: string;
+  value: string;
+  href: string | null;
+  color: string;
+}
+
+const contactInfo: ContactInfo[] = [
   {
     icon: FiMail,
     label: 'Email',
@@ -37,22 +46,36 @@ const contactInfo = [
   },
 ];
 
-const socialLinks = [
+interface SocialLink {
+  icon: IconType;
+  href: string;
+  label: string;
+  handle: string;
+}
+
+const socialLinks: SocialLink[] = [
   { icon: FiGithub, href: profile.github, label: 'GitHub', handle: '@fredm23579' },
   { icon: FiLinkedin, href: profile.linkedin, label: 'LinkedIn', handle: 'in/fred-motta' },
   { icon: FiTwitter, href: profile.twitter, label: 'Twitter/X', handle: '@fredm23579' },
 ];
 
-const initialForm = { name: '', email: '', subject: '', message: '' };
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const initialForm: FormData = { name: '', email: '', subject: '', message: '' };
 
 export default function Contact() {
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState<FormData>(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string | null>>>({});
 
-  const validate = () => {
-    const e = {};
+  const validate = (): Partial<Record<keyof FormData, string>> => {
+    const e: Partial<Record<keyof FormData, string>> = {};
     if (!form.name.trim()) e.name = 'Name is required';
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Valid email required';
     if (!form.subject.trim()) e.subject = 'Subject is required';
@@ -60,13 +83,13 @@ export default function Contact() {
     return e;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
+    if (errors[name as keyof FormData]) setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -74,7 +97,6 @@ export default function Contact() {
       return;
     }
     setLoading(true);
-    // Simulate async send
     await new Promise((res) => setTimeout(res, 1200));
     setLoading(false);
     setSubmitted(true);
@@ -121,7 +143,7 @@ export default function Contact() {
             {/* Contact details */}
             <div className="contact__details">
               {contactInfo.map(({ icon: Icon, label, value, href, color }) => (
-                <div key={label} className="contact__detail" style={{ '--detail-color': color }}>
+                <div key={label} className="contact__detail" style={{ '--detail-color': color } as React.CSSProperties}>
                   <div className="contact__detail-icon">
                     <Icon size={18} />
                   </div>
